@@ -92,19 +92,20 @@
                                              <a href="#" class="dropdown-toggle px-1 fs-5 fw-bold link-dark text-decoration-none menu-icon" id="dropdownTodoMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">︙</a>
                                              <ul class="dropdown-menu dropdown-menu-end text-center" aria-labelledby="dropdownTodoMenuLink">                                                                                                                                                                                       
                                              <li>
-                                                <form action="{{ route('goals.todos.update', [$goal, $todo]) }}" method="post">
-                                                    @csrf
-                                                    @method('patch')
-                                                      <input type="hidden" name="content" value="{{ $todo->content }}">
-                                                    @if ($todo->done)  
-                                                        <input type="hidden" name="done" value="false">
-                                                        <button type="submit" class="dropdown-item btn btn-link">未完了</button>
-                                                    @else
-                                                        <input type="hidden" name="done" value="true">
-                                                        <button type="submit" class="dropdown-item btn btn-link">完了</button> 
-                                                    @endif
-                                                     </form>                                                       
-                                                 </li>        
+                                            <form action="{{ route('goals.todos.update', [$goal, $todo]) }}" method="post">
+                                            @csrf
+                                            @method('patch')
+                                            <input type="hidden" name="content" value="{{ $todo->content }}">
+                                            <input type="hidden" name="description" value="{{ $todo->description }}">
+                                            @if ($todo->done)  
+                                            <input type="hidden" name="done" value="false">
+                                            <button type="submit" class="dropdown-item btn btn-link">未完了</button>
+                                            @else
+                                            <input type="hidden" name="done" value="true">
+                                            <button type="submit" class="dropdown-item btn btn-link">完了</button> 
+                                            @endif
+                                            </form>                                                  
+                                            </li>        
                                              
                                              <li><a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editTodoModal{{ $todo->id }}">編集</a></li>                                                  
                                                  <div class="dropdown-divider"></div>
@@ -112,7 +113,7 @@
                                              </ul>
                                          </div>
                                      </div>  
-                                     <h6 class="card-subtitle ms-1 mb-2">{{ $todo->description }}</h6>
+                                      <h6 class="card-subtitle ms-1 mb-2">{{ $todo->description }}</h6>
                                      <h6 class="card-subtitle ms-1 mb-1 text-muted">{{ $todo->created_at }}</h6>                                                               
                                      <div class="d-flex flex-wrap mx-1 mb-1">
                                          @foreach ($todo->tags()->orderBy('id', 'asc')->get() as $tag)                                    

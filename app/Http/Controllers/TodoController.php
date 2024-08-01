@@ -49,7 +49,7 @@ class TodoController extends Controller{
         ]);
 
         $todo->content = $request->input('content');
-        $todo->despriction = $request->input('despriction');
+        $todo->description = $request->input('description');
         $todo->user_id = Auth::id();
         $todo->goal_id = $goal->id;
         $todo->done = $request->boolean('done', $todo->done);
